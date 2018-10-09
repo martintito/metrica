@@ -136,8 +136,11 @@ class AplicacionController extends AbstractActionController {
                 }
                 //echo $xml->asXml();exit;
                 return new ViewModel(array(
-                    "titulo" => "xml",
-                    "xml" => $xml,)                        
+                    "titulo" => "Busqueda por rango de salario",
+                    "min" => $min,
+                    "max" => $max,
+                    "xml" => $xml,
+                    'url' => $this->getRequest()->getBaseUrl())                        
                 );
         } catch (Exception $e) {
             $app->response()->status(400);

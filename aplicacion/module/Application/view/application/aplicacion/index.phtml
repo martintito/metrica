@@ -1,15 +1,3 @@
-
-
-<?php
-if (!empty($datos->email)) {
-    var_dump($datos->email);
-    ?>
-    <ul>
-        <li>Email: <?= $datos->email ?></li>
-    </ul>
-    <?php
-}
-?>
 <div class="panel panel-primary">
     <div class="panel-heading">
         <h3 class="panel-title">Búsqueda</h3>
@@ -102,24 +90,30 @@ if (!empty($datos->email)) {
 
 <div class="panel panel-primary">
     <div class="panel-heading">
-        <h3 class="panel-title">Lista de Empleados </h3>
+        <h3 class="panel-title"><?php echo $this->titulo ?> </h3>
     </div>
     
     <div class="table-responsive">
         <table class="table table-hover" id="dev-table">
             <thead>
                 <tr>
+                    <?php 
+                    if(empty($this->resultado)){?>
+                    <th><?php echo "No se encontraron resultados."; ?></th>
+                    <?php }else{ ?>
                     <th>ID</th>
                     <th>Nombre</th>
                     <th>Email</th>
                     <th>Posicion</th>
                     <th>Salario</th>
                     <th>Detalle</th> 
+                    <?php } ?>
                 </tr>
             </thead>
             <tbody>
                 <?php
                 //print_r($usuarios);
+                                
                 foreach ($this->resultado as $item) {
                     ?>
                     <tr>
@@ -128,7 +122,7 @@ if (!empty($datos->email)) {
                         <td><?php echo $item['email'] ?></td>
                         <td><?php echo $item['position'] ?></td>
                         <td><?php echo $item['salary'] ?></td>
-                        <td><a href="/aplicacion/public/detalle/<?php echo $item["id"]; ?>" title="Ver detalle" >
+                        <td><a href="<?php echo $this->url . '/detalle/'.$item["id"]; ?>" title="Ver detalle" >
                                 Detalle
                             </a>
                         </td>
